@@ -1,39 +1,43 @@
 class Board {
-    val bigPits = intArrayOf(6, 13)
-    val pits = IntArray(14) { i ->
-        if (i in bigPits) 0 else 6
+    private val PIT_COUNT = 14
+    private val STONES_PER_PIT = 6
+    private val bigPits = intArrayOf(6, 13)
+    val pits = IntArray(PIT_COUNT) { i ->
+        if (i in bigPits) 0 else STONES_PER_PIT
     }
 
     fun isValidMove(player: Player, pitIndex: Int) = pitIndex in player.myPits && pits[pitIndex] != 0
 
-    fun playMove(player: Player, playedPit: Int): Int {
+    fun sow(player: Player, playedPit: Int): Int {
         val stones = pits[playedPit]
         pits[playedPit] = 0 //take stones from selected pit, pit is now empty
-        var currentPit = playedPit
+        var pitIndex = playedPit
         //sow stones in next pits
         repeat(stones) {
-            currentPit = calcNextPit(currentPit)
-            if (currentPit in bigPits && currentPit != player.bigPit) {
-                currentPit = calcNextPit(currentPit)
-            }
-            pits[currentPit] += 1
+            pitIndex = calculateNextPit(pitIndex, player)
+            pits[pitIndex] += 1
         }
-        capture(player, currentPit)
-        printBoard()
-        return currentPit
+        return pitIndex
     }
 
     fun capture(player: Player, lastPit: Int) {
-        val oppositePitIndex = 12 - lastPit
-        if (lastPit in player.myPits && pits[lastPit] == 1 && pits[oppositePitIndex] != 0) {
-            println("${player.name} captured ${pits[oppositePitIndex]} stones!")
+        val OPPOSING_PIT_SUM = 12 // Sum of two opposing pits
+        if (lastPit in player.myPits && pits[lastPit] == 1) {
+            val oppositePitIndex = OPPOSING_PIT_SUM - lastPit
+            println("${player.name} captured ${pits[lastPit] + pits[oppositePitIndex]} stones!")
             pits[player.bigPit] += pits[oppositePitIndex] + 1 //add enemy stones and own stone to current player's big pit
             pits[oppositePitIndex] = 0 //empty captured enemy pit
             pits[lastPit] = 0 //empty own pit
         }
     }
 
-    private fun calcNextPit(i: Int) = (i + 1) % pits.size
+    private fun calculateNextPit(currentPit: Int, player: Player): Int {
+        var nextPit = (currentPit + 1) % pits.size
+        if (nextPit in bigPits && nextPit != player.bigPit) {
+            nextPit = (currentPit + 2) % pits.size
+        }
+        return nextPit
+    }
 
     fun printBoard() {
         val board = """
