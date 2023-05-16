@@ -17,8 +17,8 @@ interface, but whatever you think is nice to show your programming skills, is up
 ### Board Setup
 Each of the two players has his six pits in front of him. To the right of the six pits, each player has a larger
 pit. In each of the six round pits are put six stones when the game starts.
-### Rules
-#### Game Play
+
+### Game Play
 The player who begins with the first move picks up all the stones in anyone of his own six pits, and sows the
 stones on to the right, one in each of the following pits, including his own big pit. No stones are put in the
 opponents' big pit. If the player's last stone lands in his own big pit, he gets another turn. This can be
