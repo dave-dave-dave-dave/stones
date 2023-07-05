@@ -1,6 +1,6 @@
 # stones
 
-Coding challenge for Ampere
+Coding challenge
 
 ## Rules
 
