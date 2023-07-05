@@ -4,16 +4,6 @@ Coding challenge
 
 ## Rules
 
-### Stones Game
-The goal is for you to showcase your programming skills. It's not so much about finishing and solving the
-problem, but delivering a well designed solution and code that you find qualitative. Try not to spend more
-than 8 hours in completing the assessment. We asses unit testing, clean coding, code complexity. Some
-rules may be ambiguous but that is intentional.
-We would like you to program a Java/Kotlin application using frameworks you are familiar with, that runs a
-game. The rules are explained below.
-This application should allow 2 players to play the game (no AI required). It doesn't need a fancy web
-interface, but whatever you think is nice to show your programming skills, is up to you.
-
 ### Board Setup
 Each of the two players has his six pits in front of him. To the right of the six pits, each player has a larger
 pit. In each of the six round pits are put six stones when the game starts.
